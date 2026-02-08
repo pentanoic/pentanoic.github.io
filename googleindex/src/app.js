@@ -1950,7 +1950,7 @@ function file_dwg(name, encoded_name, size, url, file_id, cookie_folder_id) {
           <div class="${UI.file_view_alert_class}" id="file_details" role="alert">
             ${name}<br>${size}<br>
           </div>
-          <div id="cad-viewer-container" style="width:100%; height:70vh; min-height:500px; border:0; position:relative; overflow:hidden;">
+          <div id="cad-viewer-container" style="width:100%; height:70vh; min-height:500px; border:0; position:relative; overflow:hidden; background:white">
             <iframe
               src="${viewerUrl}"
               style="width:100%; height:100%; border:none;"
