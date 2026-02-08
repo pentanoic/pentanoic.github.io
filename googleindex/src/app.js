@@ -1934,8 +1934,10 @@ function file_dwg(name, encoded_name, size, url, file_id, cookie_folder_id) {
         }
         navigation += `<a href="${new_path}" class="breadcrumb-item">${part}</a>`;
     }
-		const cleanUrl = window.location.origin + window.location.pathname;
+
+    const cleanUrl = window.location.origin + window.location.pathname;
     let viewerUrl = `https://cad.stockage.workers.dev/?url=${encodeURIComponent(cleanUrl)}`;
+
     const content = `
     <div class="container text-center"><br>
       <nav aria-label="breadcrumb">
@@ -1948,20 +1950,18 @@ function file_dwg(name, encoded_name, size, url, file_id, cookie_folder_id) {
           <div class="${UI.file_view_alert_class}" id="file_details" role="alert">
             ${name}<br>${size}<br>
           </div>
-          <div id="cad-viewer-container" style="width:100%; height:70vh; min-height:500px; border:1px solid #ccc; position:relative;">
-            <div id="cad-loading" style="position:absolute; inset:0; display:flex; align-items:center; justify-content:center; background:#f8f9fa;">
-              Đang tải file DWG...
-            </div>
+          <div id="cad-viewer-container" style="width:100%; height:70vh; min-height:500px; border:1px solid #ccc; position:relative; overflow:hidden;">
+            <iframe
+              src="${viewerUrl}"
+              style="width:100%; height:100%; border:none;"
+              frameborder="0"
+              scrolling="no"
+              allowfullscreen
+              allow="fullscreen">
+            </iframe>
           </div>
         </div>
         <div class="card-body">
-          <div class="input-group mb-4">
-            <div class="input-group-prepend">
-              <span class="input-group-text">Full URL</span>
-            </div>
-            <input type="text" class="form-control" id="dlurl" value="${url}" readonly>
-          </div>
-
           <div class="card-text text-center">
             <div class="btn-group text-center">
               <a href="${url}" type="button" class="btn btn-primary">Download</a>
@@ -1978,31 +1978,6 @@ function file_dwg(name, encoded_name, size, url, file_id, cookie_folder_id) {
           <br>
         </div>
       </div>
-
-      <!-- Script nhúng iframe client-side -->
-      <script>
-        (function() {
-          const container = document.getElementById('cad-viewer-container');
-          const loading = document.getElementById('cad-loading');
-
-          const iframe = document.createElement('iframe');
-          iframe.src = "${viewerUrl}";
-          iframe.style.cssText = 'width:100%; height:100%; border:none;';
-          iframe.allow = 'fullscreen';
-          iframe.allowFullscreen = true;
-
-          iframe.onload = () => {
-            loading.style.display = 'none';
-          };
-
-          iframe.onerror = () => {
-            loading.innerHTML = 'Không tải được viewer. Có thể file quá lớn hoặc ShareCAD tạm lỗi.<br>Kiểm tra console trình duyệt.';
-            loading.style.color = 'red';
-          };
-
-          container.appendChild(iframe);
-        })();
-      </script>
     </div>
     `;
 
