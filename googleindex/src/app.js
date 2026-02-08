@@ -1339,7 +1339,7 @@ async function file(path) {
                     file_image(name, encoded_name, size, url, file_id, cookie_folder_id);
                 } else if (mimeType.includes("pdf") || pdf.includes(fileExtension)) {
                     file_pdf(name, encoded_name, size, url, file_id, cookie_folder_id);
-								} else if (mimeType.includes("dwg") || pdf.includes(fileExtension)) {
+								} else if (mimeType.includes("dwg") || dwg.includes(fileExtension)) {
                     file_dwg(name, encoded_name, size, url, file_id, cookie_folder_id);
                 } else if (code.includes(fileExtension)) {
                     file_code(name, encoded_name, size, url, file_id, cookie_folder_id);
