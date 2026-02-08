@@ -1934,6 +1934,7 @@ function file_dwg(name, encoded_name, size, url, file_id, cookie_folder_id) {
         }
         navigation += `<a href="${new_path}" class="breadcrumb-item">${part}</a>`;
     }
+		alert(new_path);
     let viewerUrl = `https://sharecad.org/cadframe/load?url=${encodeURIComponent(url)}`;
     const content = `
     <div class="container text-center"><br>
